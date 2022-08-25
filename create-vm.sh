@@ -8,6 +8,6 @@ az vm disk attach --vm-name agent -n agent-disk
 
 az disk create -g build-agents-cli-westeurope -n jumpbox-disk --tier P10 -z 127
 
-az vm create -g build-agents-cli-westeurope -n jumpbox --image Win2022Datacenter --vnet-name build-agents-vnet --subnet jumpbox-subnet --size Standard_DS1_v2 --public-ip-address-allocation static --authentication-type ssh --generate-ssh-keys
+az vm create -g build-agents-cli-westeurope -n jumpbox --image Win2022Datacenter --vnet-name build-agents-vnet --subnet jumpbox-subnet --size Standard_DS1_v2 --public-ip-address-allocation static --admin-username azureuser --admin-password windowspassword
         
 az vm disk attach --vm-name jumpbox -n jumpbox-disk
