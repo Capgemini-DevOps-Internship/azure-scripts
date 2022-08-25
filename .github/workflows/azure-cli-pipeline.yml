@@ -85,3 +85,11 @@ jobs:
         inlineScript: |
           chmod +x $GITHUB_WORKSPACE/backup.sh
           $GITHUB_WORKSPACE/backup.sh
+    
+    - name: Delete Resources
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/deleteresources.sh
+          $GITHUB_WORKSPACE/deleteresources.sh
