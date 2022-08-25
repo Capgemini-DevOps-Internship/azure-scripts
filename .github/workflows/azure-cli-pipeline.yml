@@ -1,0 +1,83 @@
+on: [push]
+
+name: AzureCLIDeploy
+
+jobs:
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Create Vnet
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/createvnet.sh
+          $GITHUB_WORKSPACE/createvnet.sh
+          
+    - name: Create NSG
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/creatensg.sh
+          $GITHUB_WORKSPACE/creatensg.sh
+          
+    - name: Assign NSG to Subnet
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/assign-nsg-to-subnet.sh
+          $GITHUB_WORKSPACE/assign-nsg-to-subnet.sh
+          
+    - name: Create VM
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/create-vm.sh
+          $GITHUB_WORKSPACE/create-vm.sh
+          
+    - name: Create Linux Appservice
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/linux-appservice.sh
+          $GITHUB_WORKSPACE/linux-appservice.sh
+      
+    - name: Create Storage Account
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/create-storage-account.sh
+          $GITHUB_WORKSPACE/create-storage-account.sh
+    
+    - name: Create Windows Appservice
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/windows-appservice.sh
+          $GITHUB_WORKSPACE/windows-appservice.sh
+          
+    - name: Create Backup
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/backup.sh
+          $GITHUB_WORKSPACE/backup.sh
