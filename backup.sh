@@ -1,7 +1,5 @@
 #!/bin/bash
 
-az webapp up -n capgemwindowswebapp -g build-agents-cli-westeurope -l westeurope --os-type Windows --sku S1 -r dotnet:6
-
 az storage container create -n storagecontainer -g build-agents-cli-westeurope --account-name herbmoorestorageaccount
 
 az storage container generate-sas -n storagecontainer --account-name herbmoorestorageaccount --as-user --auth-mode login --permissions acdlrw --expiry 2022-08-29
