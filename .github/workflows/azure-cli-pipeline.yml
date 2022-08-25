@@ -70,6 +70,14 @@ jobs:
           chmod +x $GITHUB_WORKSPACE/create-storage-account.sh
           $GITHUB_WORKSPACE/create-storage-account.sh
           
+    - name: Create Windows Appservice
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.39.0
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/windows-appservice.sh
+          $GITHUB_WORKSPACE/windows-appservice.sh
+          
     - name: Create Backup
       uses: azure/CLI@v1
       with:
