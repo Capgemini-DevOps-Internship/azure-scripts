@@ -6,7 +6,7 @@ pool:
 
 variables:
   Container_User_Env_var: $(Docker_hub_username)
-  ContainerPassword: $(Docker_Hub_Password)
+  ContainerPassword: $(dockerhubpassword)
 
 steps:
 - task: AzurePowerShell@5
@@ -44,7 +44,7 @@ steps:
 - task: AzurePowerShell@5
   displayName: Create Linux Appservice
   env:
-    MAPPED_ENV_VAR: $(Docker_Hub_Password)
+    MAPPED_ENV_VAR: $(dockerhubpassword)
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
