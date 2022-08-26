@@ -10,7 +10,7 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\create-vnet.ps1
+    scriptPath: $(Build.SourcesDirectory)/create-vnet.ps1
     azurePowerShellVersion: latestVersion
 
 - task: AzurePowerShell@5
@@ -18,7 +18,7 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\create-nsg.ps1
+    scriptPath: $(Build.SourcesDirectory)/create-nsg.ps1
     azurePowerShellVersion: latestVersion
 
 - task: AzurePowerShell@5
@@ -26,7 +26,7 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\assign-nsg-to-vnet.ps1
+    scriptPath: $(Build.SourcesDirectory)/assign-nsg-to-vnet.ps1
     azurePowerShellVersion: latestVersion
 
 - task: AzurePowerShell@5
@@ -34,7 +34,7 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\create-vm.ps1
+    scriptPath: $(Build.SourcesDirectory)/create-vm.ps1
     azurePowerShellVersion: latestVersion
 
 - task: AzurePowerShell@5
@@ -42,7 +42,7 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\linux-appservice.ps1
+    scriptPath: $(Build.SourcesDirectory)/linux-appservice.ps1
     azurePowerShellVersion: latestVersion
 
 - task: AzurePowerShell@5
@@ -50,7 +50,7 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\create-storage-account.ps1
+    scriptPath: $(Build.SourcesDirectory)/create-storage-account.ps1
     azurePowerShellVersion: latestVersion
 
 - task: AzurePowerShell@5
@@ -58,7 +58,7 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\windows-appservice.ps1
+    scriptPath: $(Build.SourcesDirectory)/windows-appservice.ps1
     azurePowerShellVersion: latestVersion
 
 - task: AzurePowerShell@5
@@ -66,7 +66,7 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\backup.ps1
+    scriptPath: $(Build.SourcesDirectory)/backup.ps1
     azurePowerShellVersion: latestVersion
 
 - task: AzurePowerShell@5
@@ -74,5 +74,5 @@ steps:
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
-    scriptPath: $(Build.SourcesDirectory)\delete-resources.ps1
+    scriptPath: $(Build.SourcesDirectory)/delete-resources.ps1
     azurePowerShellVersion: latestVersion
