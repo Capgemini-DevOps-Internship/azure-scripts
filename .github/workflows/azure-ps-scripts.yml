@@ -25,60 +25,60 @@ jobs:
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\create-vnet.ps1
+           & "$GITHUB_WORKSPACE/create-vnet.ps1"
      
     - name: Create NSG
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\create-nsg.ps1
+           & "$GITHUB_WORKSPACE/create-nsg.ps1"
    
     - name: Assign NSG to Subnet
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\assign-nsg-to-vnet.ps1
+           & "$GITHUB_WORKSPACE/assign-nsg-to-vnet.ps1"
 
     - name: Create VM
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\create-vm.ps1
+           & "$GITHUB_WORKSPACE/create-vm.ps1"
            
     - name: Create Linux Appservice
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\linux-appservice.ps1
+           & "$GITHUB_WORKSPACE/linux-appservice.ps1"
      
     - name: Create Storage Account
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\create-storage-account.ps1
+           & "$GITHUB_WORKSPACE/create-storage-account.ps1"
            
     - name: Create Windows Appservice
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\windows-appservice.ps1
+           & "$GITHUB_WORKSPACE/windows-appservice.ps1"
            
     - name: Create Backup
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\backup.ps1
+           & "$GITHUB_WORKSPACE/backup.ps1"
    
     - name: Delete Resources
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-           $GITHUB_WORKSPACE\delete-resources.ps1
+           & "$GITHUB_WORKSPACE/delete-resources.ps1"
