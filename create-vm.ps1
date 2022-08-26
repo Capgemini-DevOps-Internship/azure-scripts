@@ -12,5 +12,5 @@ $virtualmachine2 = New-AzVM -Name jumpbox -ResourceGroupName build-agents-powers
 $diskconfig2 = New-AzDiskConfig -Tier P10 -DiskSizeGB 127 -Location westeurope -CreateOption Empty -SkuName Premium_LRS
 $datadisk2 = New-AzDisk -DiskName jumpbox-disk -Disk $diskconfig2 -ResourceGroupName build-agents-powershell-westeurope 
 $vm2 = Get-AzVM -Name jumpbox -ResourceGroupName build-agents-powershell-westeurope
-$vm2 = Add-AzVMDataDisk -VM $vm2 -Name jumpbox-disk -CreateOption Attach -lun 1 -DeleteOption delete -ManagedDiskID $datadisk1.Id
+$vm2 = Add-AzVMDataDisk -VM $vm2 -Name jumpbox-disk -CreateOption Attach -lun 1 -DeleteOption delete -ManagedDiskID $datadisk2.Id
 Update-AzVM -VM $vm2 -ResourceGroupName build-agents-powershell-westeurope
