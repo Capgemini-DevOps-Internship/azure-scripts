@@ -25,7 +25,7 @@ jobs:
       with:
         azPSVersion: "latest"
         inlineScript: |
-           . ./create-vnet.ps1
+           . .\create-vnet.ps1
      
     - name: Create NSG
       uses: azure/powershell@v1
