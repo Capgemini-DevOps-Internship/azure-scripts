@@ -1,0 +1,75 @@
+on: [push]
+
+name: AzurePowerShellDeploy
+
+permissions:
+      id-token: write
+      contents: read
+      
+jobs:
+
+  build:
+    runs-on: windows-latest
+    steps:
+    
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+        enable-AzPSSession: true
+        
+    - name: Create Vnet
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/create-vnet.ps1
+     
+    - name: Create NSG
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/create-nsg.ps1
+   
+    - name: Assign NSG to Subnet
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/assign-nsg-to-vnet.ps1
+
+    - name: Create VM
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/create-vm.ps1
+           
+    - name: Create Linux Appservice
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/linux-appservice.ps1
+     
+    - name: Create Storage Account
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/create-storage-account.ps1
+           
+    - name: Create Windows Appservice
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/windows-appservice.ps1
+           
+    - name: Create Backup
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/backup.ps1
+   
+    - name: Delete Resources
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+           $GITHUB_WORKSPACE/delete-resources.ps1
