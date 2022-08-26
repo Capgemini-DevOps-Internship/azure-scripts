@@ -4,6 +4,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  Container_User_Env_var: $(Docker_hub_username)
+  ContainerPassword: $(Docker_Hub_Password)
+
 steps:
 - task: AzurePowerShell@5
   displayName: Create Vnet
@@ -39,6 +43,8 @@ steps:
 
 - task: AzurePowerShell@5
   displayName: Create Linux Appservice
+  env:
+    MAPPED_ENV_VAR: $(Docker_Hub_Password)
   inputs:
     azureSubscription: build-agents
     scriptType: filePath
