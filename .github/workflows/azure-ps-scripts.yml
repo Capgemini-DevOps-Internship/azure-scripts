@@ -12,7 +12,7 @@ env:
 jobs:
 
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     
     - name: Azure Login
@@ -28,60 +28,60 @@ jobs:
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\create-vnet.ps1
+            ./create-vnet.ps1
      
     - name: Create NSG
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\create-nsg.ps1
+            ./create-nsg.ps1
    
     - name: Assign NSG to Subnet
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\assign-nsg-to-vnet.ps1
+            ./assign-nsg-to-vnet.ps1
 
     - name: Create VM
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\create-vm.ps1
+            ./create-vm.ps1
            
     - name: Create Linux Appservice
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\linux-appservice.ps1
+            ./linux-appservice.ps1
      
     - name: Create Storage Account
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\create-storage-account.ps1
+            ./create-storage-account.ps1
            
     - name: Create Windows Appservice
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\windows-appservice.ps1
+            ./windows-appservice.ps1
            
     - name: Create Backup
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\backup.ps1
+            ./backup.ps1
    
     - name: Delete Resources
       uses: azure/powershell@v1
       with:
         azPSVersion: "latest"
         inlineScript: |
-            .\delete-resources.ps1
+            ./delete-resources.ps1
