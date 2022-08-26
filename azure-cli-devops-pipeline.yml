@@ -1,0 +1,78 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureCLI@2
+  displayName: Create Vnet
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './createvnet.sh'
+
+- task: AzureCLI@2
+  displayName: Create NSG
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './creatensg.sh'
+
+- task: AzureCLI@2
+  displayName: Assign NSG To Subnet
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './assign-nsg-to-subnet.sh'
+
+- task: AzureCLI@2
+  displayName: Create VM
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './create-vm.sh'
+
+- task: AzureCLI@2
+  displayName: Create Linux Appservice
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './linux-appservice.sh'
+
+- task: AzureCLI@2
+  displayName: Create Storage Account
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './create-storage-account.sh'
+
+- task: AzureCLI@2
+  displayName: Create Windows Appservice
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './windows-appservice.sh'
+
+- task: AzureCLI@2
+  displayName: Create Backup
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './backup.sh'
+
+- task: AzureCLI@2
+  displayName: Delete Resources
+  inputs:
+    azureSubscription: 'build-agents'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './deleteresources.sh'
