@@ -1,0 +1,13 @@
+trigger:
+- main
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: build-agents
+    scriptType: filePath
+    scriptPath: $(Build.SourcesDirectory)\create-vnet.ps1
+    azurePowerShellVersion: latestVersion
