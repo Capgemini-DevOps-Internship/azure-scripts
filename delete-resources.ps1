@@ -10,4 +10,6 @@ $virtualnetwork = Get-AzVirtualNetwork -Name build-agents-vnet -ResourceGroupNam
 Set-AzVirtualNetworkSubnetConfig -Name agents-subnet -VirtualNetwork $virtualnetwork -AddressPrefix "10.0.0.0/24" -NetworkSecurityGroupId '""'
 Set-AzVirtualNetworkSubnetConfig -Name jumpbox-subnet -VirtualNetwork $virtualnetwork -AddressPrefix "10.0.1.0/24" -NetworkSecurityGroupId '""'
 
+Remove-AzVM -ResourceGroupName "build-agents-powershell-westeurope" -Name "agent" -Force
+Remove-AzVM -ResourceGroupName "build-agents-powershell-westeurope" -Name "jumpbox" -Force
 Get-AzResource -ResourceGroupName build-agents-powershell-westeurope | Remove-AzResource -Force
