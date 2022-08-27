@@ -6,9 +6,8 @@ $VirtualMachine2 = Get-AzVM -ResourceGroupName "build-agents-powershell-westeuro
 Remove-AzVMDataDisk -VM $VirtualMachine2 -Name "jumpbox-disk"
 Update-AzVM -ResourceGroupName "build-agents-powershell-westeurope" -VM $VirtualMachine2
 
-$virtualnetwork = Get-AzVirtualNetwork -Name build-agents-vnet -ResourceGroupName build-agents-powershell-westeurope
-Set-AzVirtualNetworkSubnetConfig -Name agents-subnet -VirtualNetwork $virtualnetwork -AddressPrefix "10.0.0.0/24" -NetworkSecurityGroupId '""'
-Set-AzVirtualNetworkSubnetConfig -Name jumpbox-subnet -VirtualNetwork $virtualnetwork -AddressPrefix "10.0.1.0/24" -NetworkSecurityGroupId '""'
+Remove-AzureNetworkSecurityGroupAssociation -Name "linux-nsg" -VirtualNetworName "build-agents-vnet" -SubnetName "agents-subnet" -Force
+Remove-AzureNetworkSecurityGroupAssociation -Name "windows-nsg" -VirtualNetworName "build-agents-vnet" -SubnetName "jumpbox-subnet" -Force
 
 Remove-AzVM -ResourceGroupName "build-agents-powershell-westeurope" -Name "agent" -Force
 Remove-AzVM -ResourceGroupName "build-agents-powershell-westeurope" -Name "jumpbox" -Force
