@@ -13,4 +13,7 @@ $virtualnetwork | Set-AzVirtualNetwork
 
 Remove-AzVM -ResourceGroupName "build-agents-powershell-westeurope" -Name "agent" -Force
 Remove-AzVM -ResourceGroupName "build-agents-powershell-westeurope" -Name "jumpbox" -Force
+Remove-AzWebApp -ResourceGroupName "build-agents-powershell-westeurope" -Name "capgem-linux-webapp" -DeleteAppServicePlan -Force
+Remove-AzWebApp -ResourceGroupName "build-agents-powershell-westeurope" -Name "capgem-windows-webapp" -DeleteAppServicePlan -Force
+
 Get-AzResource -ResourceGroupName build-agents-powershell-westeurope | Remove-AzResource -Force
